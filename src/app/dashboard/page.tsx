@@ -1,13 +1,9 @@
 import Link from 'next/link';
 import { ArrowRight, BrainCircuit, Target } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function DashboardPage() {
-  const founderImage = PlaceHolderImages.find(img => img.id === 'founder-portrait');
-
   const featureCards = [
     {
       title: 'Competitive Insights',
@@ -41,11 +37,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
         <Card className="flex flex-col items-center justify-center text-center p-6">
-          <Avatar className="w-24 h-24 mb-4">
-            {founderImage && <AvatarImage src={founderImage.imageUrl} alt="Founder" data-ai-hint={founderImage.imageHint} />}
-            <AvatarFallback>T</AvatarFallback>
-          </Avatar>
-          <h3 className="font-semibold">Tsepo</h3>
+          <h3 className="font-semibold text-2xl mb-2">Tsepo</h3>
           <p className="text-sm text-muted-foreground mb-4">Founder of DeepResearchAI</p>
           <Button asChild variant="outline" size="sm">
             <a href="https://tsepoai-showcase.vercel.app" target="_blank" rel="noopener noreferrer">
