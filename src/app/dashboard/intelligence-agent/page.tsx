@@ -6,7 +6,7 @@ export default function IntelligenceAgentPage() {
             <div className="max-w-4xl">
                 <h1 className="text-3xl font-bold font-headline mb-2">Competitive Intelligence Agent</h1>
                 <p className="text-muted-foreground">
-                    Get a deep, objective, and actionable report on any company. Our AI agent will perform a detailed analysis based on publicly available information.
+                    Compare your website against a competitor. Our AI agent will perform a detailed analysis of both URLs and generate a comparative report.
                 </p>
             </div>
             <IntelligenceAgentForm />

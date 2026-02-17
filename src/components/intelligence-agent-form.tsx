@@ -10,20 +10,21 @@ import { useToast } from '@/hooks/use-toast';
 import { Separator } from './ui/separator';
 
 export function IntelligenceAgentForm() {
-  const [companyName, setCompanyName] = React.useState('');
+  const [competitorUrl, setCompetitorUrl] = React.useState('');
+  const [userUrl, setUserUrl] = React.useState('');
   const [report, setReport] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!companyName.trim()) return;
+    if (!competitorUrl.trim() || !userUrl.trim()) return;
 
     setIsLoading(true);
     setReport('');
 
     try {
-      const result = await competitiveIntelligenceAgent({ companyName });
+      const result = await competitiveIntelligenceAgent({ competitorUrl, userUrl });
       setReport(result.report);
     } catch (error) {
       console.error('Error generating report:', error);
@@ -41,22 +42,34 @@ export function IntelligenceAgentForm() {
     <>
       <Card>
         <CardHeader>
-            <CardTitle>Company Analysis</CardTitle>
+            <CardTitle>Comparative Analysis</CardTitle>
             <CardDescription>
-                Enter a company name to generate a deep-dive competitive intelligence report.
+                Enter your URL and a competitor's URL to generate a comparative analysis.
             </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
-          <CardContent>
-            <Input
-              placeholder="e.g. 'Salesforce' or 'Microsoft'"
-              value={companyName}
-              onChange={(e) => setCompanyName(e.target.value)}
-              disabled={isLoading}
-            />
+          <CardContent className="space-y-4">
+             <div className="grid md:grid-cols-2 gap-4">
+                <Input
+                    placeholder="Competitor URL (e.g., https://competitor.com)"
+                    value={competitorUrl}
+                    onChange={(e) => setCompetitorUrl(e.target.value)}
+                    disabled={isLoading}
+                    type="url"
+                    required
+                />
+                <Input
+                    placeholder="Your URL (e.g., https://yoursite.com)"
+                    value={userUrl}
+                    onChange={(e) => setUserUrl(e.target.value)}
+                    disabled={isLoading}
+                    type="url"
+                    required
+                />
+            </div>
           </CardContent>
           <CardFooter>
-            <Button type="submit" disabled={isLoading || !companyName.trim()}>
+            <Button type="submit" disabled={isLoading || !competitorUrl.trim() || !userUrl.trim()}>
               {isLoading ? (
                 <>
                   <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
@@ -89,7 +102,7 @@ export function IntelligenceAgentForm() {
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                     <Bot className="w-6 h-6 text-primary" />
-                    <span className="font-headline">Intelligence Report for {companyName}</span>
+                    <span className="font-headline">Comparative Intelligence Report</span>
                 </CardTitle>
             </CardHeader>
             <CardContent>
