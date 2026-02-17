@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, BrainCircuit, Target } from 'lucide-react';
+import { ArrowRight, BrainCircuit, Target, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -16,6 +16,12 @@ export default function DashboardPage() {
       description: 'Analyze your position against competitors.',
       href: '/dashboard/market-gap',
       icon: <Target className="w-6 h-6" />,
+    },
+    {
+      title: 'Intelligence Agent',
+      description: 'Compare your website against a competitor.',
+      href: '/dashboard/intelligence-agent',
+      icon: <Bot className="w-6 h-6" />,
     },
   ];
 
@@ -49,7 +55,7 @@ export default function DashboardPage() {
 
       <div className="space-y-4">
         <h2 className="text-xl font-semibold font-headline">Get Started</h2>
-        <div className="grid sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {featureCards.map(card => (
             <Link key={card.href} href={card.href} className="block">
               <Card className="h-full hover:bg-muted/50 transition-colors">
