@@ -23,7 +23,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSeparator,
+  SidebarSeparator,
   SidebarProvider,
   SidebarInset,
   SidebarTrigger,
@@ -92,7 +92,7 @@ export function AppShell({ children }: AppShellProps) {
               </SidebarMenuItem>
             ))}
           </SidebarMenu>
-          <SidebarMenuSeparator />
+          <SidebarSeparator />
           <SidebarMenu>
             {secondaryNavItems.map((item) => (
               <SidebarMenuItem key={item.href}>
