@@ -4,6 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
+  ArrowLeft,
   BookOpen,
   BrainCircuit,
   CreditCard,
@@ -41,6 +42,7 @@ import { Logo } from '../icons/logo';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { ThemeToggle } from '../theme-toggle';
 
 type AppShellProps = {
   children: React.ReactNode;
@@ -50,6 +52,8 @@ export function AppShell({ children }: AppShellProps) {
   const pathname = usePathname();
   const isMobile = useIsMobile();
   const router = useRouter();
+
+  const showBackButton = pathname !== '/dashboard';
 
   const sidebarNavItems = [
     { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -123,9 +127,16 @@ export function AppShell({ children }: AppShellProps) {
       <SidebarInset>
         <header className="flex h-14 items-center gap-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-4 md:px-6 sticky top-0 z-30">
           {isMobile && <SidebarTrigger />}
+          {showBackButton && (
+            <Button variant="ghost" size="icon" onClick={() => router.back()}>
+              <ArrowLeft className="h-4 w-4" />
+              <span className="sr-only">Go Back</span>
+            </Button>
+          )}
           <div className="flex-1">
             {/* Optional: Add search bar or other header content here */}
           </div>
+          <ThemeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-9 w-9 rounded-full">

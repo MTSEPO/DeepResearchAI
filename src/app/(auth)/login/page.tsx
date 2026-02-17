@@ -1,14 +1,31 @@
+'use client';
+
 import Link from 'next/link';
-import { ArrowRight, Chrome } from 'lucide-react';
+import { ArrowLeft, Chrome } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Logo } from '@/components/icons/logo';
+import { useRouter } from 'next/navigation';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 export default function LoginPage() {
+  const router = useRouter();
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-secondary/50 p-4">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
+      <Button
+        variant="ghost"
+        onClick={() => router.back()}
+        className="absolute top-4 left-4 flex items-center gap-2 text-sm"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        <span>Back</span>
+      </Button>
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="text-center">
           <Link href="/" className="inline-block mx-auto mb-4">

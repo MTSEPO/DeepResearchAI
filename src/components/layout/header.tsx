@@ -6,6 +6,7 @@ import { ArrowRight, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Logo } from '../icons/logo';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { ThemeToggle } from '../theme-toggle';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -49,6 +50,7 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-2">
+          <ThemeToggle />
           <Button variant="ghost" asChild>
             <Link href="/login">Log In</Link>
           </Button>
@@ -60,7 +62,8 @@ export default function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        <div className="md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
