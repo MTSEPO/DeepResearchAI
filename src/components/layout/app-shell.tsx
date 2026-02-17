@@ -14,6 +14,7 @@ import {
   Settings,
   Target,
   User,
+  Bot,
 } from 'lucide-react';
 
 import {
@@ -64,6 +65,7 @@ export function AppShell({ children }: AppShellProps) {
     { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/dashboard/competitive-insights', label: 'Competitive Insights', icon: BrainCircuit },
     { href: '/dashboard/market-gap', label: 'Market Gap Analysis', icon: Target },
+    { href: '/dashboard/intelligence-agent', label: 'Intelligence Agent', icon: Bot },
   ];
 
   const secondaryNavItems = [

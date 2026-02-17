@@ -3,3 +3,4 @@ config();
 
 import '@/ai/flows/market-gap-analysis-report.ts';
 import '@/ai/flows/competitive-insight-generation.ts';
+import '@/ai/flows/competitive-intelligence-agent.ts';
