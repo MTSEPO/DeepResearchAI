@@ -8,7 +8,7 @@ export default function TermsOfServicePage() {
       <main className="flex-grow container mx-auto px-4 md:px-6 py-12 md:py-24">
         <article className="prose prose-gray dark:prose-invert max-w-3xl mx-auto">
           <h1 className="font-headline text-4xl mb-4">Terms of Service</h1>
-          <p className="text-muted-foreground">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <p className="text-muted-foreground">Last updated: July 23, 2024</p>
 
           <p>
             By accessing the website at DeepResearchAI, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.
