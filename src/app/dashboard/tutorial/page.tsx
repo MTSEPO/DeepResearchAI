@@ -4,7 +4,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { BrainCircuit, Target } from "lucide-react";
+import { BrainCircuit, Target, Bot, CreditCard } from "lucide-react";
 
 export default function TutorialPage() {
     return (
@@ -79,6 +79,40 @@ export default function TutorialPage() {
                         </ol>
                     </AccordionContent>
                 </AccordionItem>
+                
+                <AccordionItem value="item-3">
+                    <AccordionTrigger className="text-xl font-semibold">
+                        <div className="flex items-center gap-3">
+                             <Bot className="w-6 h-6 text-primary" />
+                            Using the Intelligence Agent
+                        </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="prose prose-gray dark:prose-invert pt-2">
+                        <p>The Intelligence Agent performs a deep, side-by-side comparison of two websites, making it invaluable for sales teams who need to understand their positioning against a specific competitor.</p>
+                         <ol>
+                            <li>Navigate to the <strong>Intelligence Agent</strong> page from the sidebar.</li>
+                            <li>In the "Competitor URL" field, enter the full website address of the company you want to analyze (e.g., `https://competitor.com`).</li>
+                            <li>In the "Your URL" field, enter your company's website address (e.g., `https://yoursite.com`).</li>
+                            <li>Click the "Generate Report" button.</li>
+                            <li>The AI agent will perform a detailed analysis, crawling both sites to compare their value propositions, pricing strategies, marketing focus, and customer sentiment from across the web. The results are delivered in a structured report.</li>
+                        </ol>
+                    </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-4">
+                    <AccordionTrigger className="text-xl font-semibold">
+                        <div className="flex items-center gap-3">
+                             <CreditCard className="w-6 h-6 text-primary" />
+                            Understanding Pay-What-You-Want (PWYW)
+                        </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="prose prose-gray dark:prose-invert pt-2">
+                        <p>We believe in making powerful tools accessible to everyone. Our <strong>Community</strong> plan operates on a Pay-What-You-Want (PWYW) model. This means you get full access to our core tools and can choose a price that you feel is fair and works for you.</p>
+                        <p>Your contribution directly supports our ongoing development, allowing us to continuously improve the product and build new features.</p>
+                        <p>On the <a href="/pricing">Pricing Page</a>, you'll find a slider for the Community plan. Simply adjust it to the monthly price you'd like to pay. While we suggest a price, you are in complete control. Thank you for supporting our mission!</p>
+                    </AccordionContent>
+                </AccordionItem>
+
             </Accordion>
         </div>
     );
