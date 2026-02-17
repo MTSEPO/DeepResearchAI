@@ -25,7 +25,7 @@ export default function Header() {
   const navLinks = [
     { href: '/#features', label: 'Features' },
     { href: '/pricing', label: 'Pricing' },
-    { href: 'mailto:support@deepresearch.ai', label: 'Support' },
+    { href: 'mailto:motsatsetsepo66@gmail.com', label: 'Support' },
   ];
 
   return (

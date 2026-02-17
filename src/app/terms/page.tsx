@@ -52,7 +52,8 @@ export default function TermsOfServicePage() {
           <h2>Contact Us</h2>
           <p>If you have any questions about these Terms, you can contact us:</p>
           <ul>
-            <li>By email: <a href="mailto:support@deepresearch.ai">support@deepresearch.ai</a></li>
+            <li>By email: <a href="mailto:motsatsetsepo66@gmail.com">motsatsetsepo66@gmail.com</a></li>
+            <li>By WhatsApp: +27 67 948 9264</li>
           </ul>
 
         </article>

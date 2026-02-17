@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
-import { Check } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { ArrowLeft, Check } from 'lucide-react';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { Button } from '@/components/ui/button';
@@ -8,6 +11,7 @@ import { PwywSlider } from '@/components/pwyw-slider';
 import { Badge } from '@/components/ui/badge';
 
 export default function PricingPage() {
+  const router = useRouter();
   const plans = [
     {
       name: 'Hobbyist',
@@ -49,6 +53,10 @@ export default function PricingPage() {
       <main className="flex-grow">
         <section className="py-16 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
+            <Button variant="ghost" onClick={() => router.back()} className="mb-8 flex items-center gap-2">
+                <ArrowLeft className="h-4 w-4" />
+                <span>Back</span>
+            </Button>
             <div className="text-center space-y-4 mb-12">
               <h1 className="text-4xl md:text-5xl font-extrabold tracking-tighter font-headline">
                 Find the Perfect Plan

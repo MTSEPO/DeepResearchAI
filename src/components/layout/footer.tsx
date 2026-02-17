@@ -21,7 +21,7 @@ export default function Footer() {
               <ul className="space-y-2 text-sm">
                 <li><Link href="/pricing" className="text-muted-foreground hover:text-foreground">Pricing</Link></li>
                 <li><Link href="/#features" className="text-muted-foreground hover:text-foreground">Features</Link></li>
-                <li><a href="mailto:support@deepresearch.ai" className="text-muted-foreground hover:text-foreground">Support</a></li>
+                <li><a href="mailto:motsatsetsepo66@gmail.com" className="text-muted-foreground hover:text-foreground">Support</a></li>
               </ul>
             </div>
             <div className="space-y-4">
@@ -33,10 +33,11 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t">
-          <p className="text-center text-sm text-muted-foreground">
+        <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground space-y-1">
+          <p>
             © {new Date().getFullYear()} DeepResearchAI. All rights reserved.
           </p>
+          <p>WhatsApp: +27 67 948 9264</p>
         </div>
       </div>
     </footer>
