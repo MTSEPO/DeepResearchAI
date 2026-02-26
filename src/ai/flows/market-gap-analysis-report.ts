@@ -10,6 +10,8 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
+export const maxDuration = 60;
+
 const CompanyInfoSchema = z.object({
   name: z.string().describe('The name of the company.'),
   productDescription: z.string().describe('A detailed description of the company\'s product or service.'),

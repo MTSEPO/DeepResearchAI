@@ -10,6 +10,8 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
+export const maxDuration = 60;
+
 const CompetitiveIntelligenceAgentInputSchema = z.object({
   competitorUrl: z.string().url().describe("The URL of the competitor's website."),
   userUrl: z.string().url().describe('The URL of your website or any other URL to compare against.'),
