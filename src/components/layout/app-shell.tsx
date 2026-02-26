@@ -15,6 +15,7 @@ import {
   Target,
   User,
   Bot,
+  ShieldAlert,
 } from 'lucide-react';
 
 import {
@@ -69,6 +70,7 @@ export function AppShell({ children }: AppShellProps) {
   ];
 
   const secondaryNavItems = [
+    { href: '/dashboard/briefing', label: 'Operational Briefing', icon: ShieldAlert },
     { href: '/dashboard/roadmap', label: 'Roadmap', icon: Map },
     { href: '/dashboard/tutorial', label: 'Tutorial', icon: BookOpen },
     { href: '/pricing', label: 'Billing', icon: CreditCard },
@@ -141,7 +143,6 @@ export function AppShell({ children }: AppShellProps) {
             </Button>
           )}
           <div className="flex-1">
-            {/* Optional: Add search bar or other header content here */}
           </div>
           <ThemeToggle />
           {mounted ? (
