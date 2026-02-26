@@ -46,7 +46,7 @@ export default function Home() {
                   AI Competitive Intelligence for Sales Teams
                 </h1>
                 <p className="text-lg text-muted-foreground md:text-xl">
-                  DeepResearchAI uncovers critical insights and market gaps, empowering your team to build, sell, and win with confidence.
+                  Dismantle competitor data with real-time AI insights. Uncover market gaps and win more deals with our strategic intelligence engine.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild size="lg" className="font-semibold">

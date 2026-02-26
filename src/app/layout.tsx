@@ -4,8 +4,8 @@ import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'DeepResearchAI',
-  description: 'AI Competitive Intelligence for Sales Teams',
+  title: 'DeepResearchAI | Strategic Competitive Intelligence',
+  description: 'Dismantle competitor data with real-time AI insights. Uncover market gaps and win more deals with our strategic intelligence engine.',
 };
 
 export default function RootLayout({
