@@ -10,7 +10,7 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-export const maxDuration = 60;
+export const maxDuration = 10;
 
 const CompetitiveInsightGenerationInputSchema = z.object({
   question: z
