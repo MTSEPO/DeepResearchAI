@@ -1,10 +1,6 @@
 'use server';
 /**
- * @fileOverview This file implements a Genkit flow for generating competitive intelligence insights.
- *
- * - competitiveInsightGeneration - A function that generates AI-driven insights about competitors or market trends.
- * - CompetitiveInsightGenerationInput - The input type for the competitiveInsightGeneration function.
- * - CompetitiveInsightGenerationOutput - The return type for the competitiveInsightGeneration function.
+ * @fileOverview Fast competitive insight generation using Edge runtime.
  */
 
 import {ai} from '@/ai/genkit';
@@ -13,16 +9,14 @@ import {z} from 'genkit';
 export const runtime = 'edge';
 
 const CompetitiveInsightGenerationInputSchema = z.object({
-  question: z
-    .string()
-    .describe("The user's question about competitors or market trends."),
+  question: z.string().describe("The user's question about competitors."),
 });
 export type CompetitiveInsightGenerationInput = z.infer<
   typeof CompetitiveInsightGenerationInputSchema
 >;
 
 const CompetitiveInsightGenerationOutputSchema = z.object({
-  insight: z.string().describe('An AI-driven insight to inform sales strategy.'),
+  insight: z.string().describe('AI-driven insight.'),
 });
 export type CompetitiveInsightGenerationOutput = z.infer<
   typeof CompetitiveInsightGenerationOutputSchema
@@ -38,9 +32,10 @@ const competitiveInsightPrompt = ai.definePrompt({
   name: 'competitiveInsightPrompt',
   input: {schema: CompetitiveInsightGenerationInputSchema},
   output: {schema: CompetitiveInsightGenerationOutputSchema},
-  prompt: `You are an expert competitive intelligence analyst. Provide a concise, actionable insight.
-
-User Question: {{{question}}}`,
+  config: { maxOutputTokens: 1000 },
+  prompt: `You are a Senior Analyst. Provide a single-pass, high-speed insight (max 4000 token context).
+  
+Question: {{{question}}}`,
 });
 
 const competitiveInsightGenerationFlow = ai.defineFlow(

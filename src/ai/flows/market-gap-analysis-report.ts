@@ -1,10 +1,10 @@
 'use server';
 /**
- * @fileOverview A Genkit flow for generating a comprehensive market gap analysis report.
+ * @fileOverview A high-speed Genkit flow for generating market gap analysis.
  *
- * - generateMarketGapAnalysisReport - A function that handles the market gap analysis process.
- * - MarketGapAnalysisReportInput - The input type for the generateMarketGapAnalysisReport function.
- * - MarketGapAnalysisReportOutput - The return type for the generateMarketGapAnalysisReport function.
+ * - generateMarketGapAnalysisReport - Handles the analysis in a single pass.
+ * - MarketGapAnalysisReportInput - Simplified input schema.
+ * - MarketGapAnalysisReportOutput - Structured output for the report.
  */
 
 import { ai } from '@/ai/genkit';
@@ -14,7 +14,7 @@ export const runtime = 'edge';
 
 const CompanyInfoSchema = z.object({
   name: z.string().describe('Company name'),
-  desc: z.string().describe('Product summary'),
+  desc: z.string().describe('Short product summary'),
 });
 
 const MarketGapAnalysisReportInputSchema = z.object({
@@ -39,6 +39,25 @@ const MarketGapAnalysisReportOutputSchema = z.object({
 });
 export type MarketGapAnalysisReportOutput = z.infer<typeof MarketGapAnalysisReportOutputSchema>;
 
+// Internal tool to simulate high-speed search limited to top 3 results
+const searchTool = ai.defineTool(
+  {
+    name: 'searchCompetitorInsights',
+    description: 'Quickly retrieves top 3 market insights for a company.',
+    inputSchema: z.object({ query: z.string() }),
+    outputSchema: z.array(z.string()),
+  },
+  async (input) => {
+    // This is a placeholder for actual Google/Tavily search logic.
+    // Capping at 3 results per request as per MVP speed requirements.
+    return [
+      `Insight 1 for ${input.query}`,
+      `Insight 2 for ${input.query}`,
+      `Insight 3 for ${input.query}`,
+    ];
+  }
+);
+
 export async function generateMarketGapAnalysisReport(input: MarketGapAnalysisReportInput): Promise<MarketGapAnalysisReportOutput> {
   return marketGapAnalysisReportFlow(input);
 }
@@ -47,16 +66,24 @@ const prompt = ai.definePrompt({
   name: 'marketGapAnalysisPrompt',
   input: { schema: MarketGapAnalysisReportInputSchema },
   output: { schema: MarketGapAnalysisReportOutputSchema },
-  prompt: `Analyze the user's company against competitors to identify market gaps.
-
-User: {{{userCompany.name}}} - {{{userCompany.desc}}}
+  tools: [searchTool],
+  config: {
+    maxOutputTokens: 2000,
+    temperature: 0.7,
+  },
+  prompt: `Perform a single-pass market gap analysis.
+  
+User Company: {{{userCompany.name}}} - {{{userCompany.desc}}}
 
 Competitors:
 {{#each competitors}}
 - {{{name}}}: {{{desc}}}
 {{/each}}
 
-Identify white spaces and strategic opportunities.`,
+1. Use searchCompetitorInsights for each competitor (max 3 results each).
+2. Synthesize all data into identified gaps and white spaces.
+3. Limit context to 4000 tokens for maximum speed.
+4. Output a concise, high-impact report.`,
 });
 
 const marketGapAnalysisReportFlow = ai.defineFlow(
