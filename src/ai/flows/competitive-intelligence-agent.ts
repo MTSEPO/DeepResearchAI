@@ -7,8 +7,8 @@
  * - CompetitiveIntelligenceAgentOutput - The return type for the competitiveIntelligenceAgent function.
  */
 
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { ai } from '@/ai/genkit';
+import { z } from 'genkit';
 
 export const maxDuration = 60;
 
@@ -35,8 +35,8 @@ export async function competitiveIntelligenceAgent(
 
 const competitiveIntelligenceAgentPrompt = ai.definePrompt({
   name: 'competitiveIntelligenceAgentPrompt',
-  input: {schema: CompetitiveIntelligenceAgentInputSchema},
-  output: {schema: CompetitiveIntelligenceAgentOutputSchema},
+  input: { schema: CompetitiveIntelligenceAgentInputSchema },
+  output: { schema: CompetitiveIntelligenceAgentOutputSchema },
   prompt: `You are a Senior Competitive Intelligence Agent. Your goal is to provide a deep, objective, and actionable comparison between two websites provided by the user.
 
 Website 1 (Competitor): {{{competitorUrl}}}
@@ -63,8 +63,8 @@ const competitiveIntelligenceAgentFlow = ai.defineFlow(
     inputSchema: CompetitiveIntelligenceAgentInputSchema,
     outputSchema: CompetitiveIntelligenceAgentOutputSchema,
   },
-  async input => {
-    const {output} = await competitiveIntelligenceAgentPrompt(input);
+  async (input) => {
+    const { output } = await competitiveIntelligenceAgentPrompt(input);
     return output!;
   }
 );
