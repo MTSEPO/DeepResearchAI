@@ -1,6 +1,6 @@
 'use server';
 /**
- * @fileOverview High-speed intelligence agent using Server Actions.
+ * @fileOverview High-speed intelligence agent using Genkit.
  */
 
 import { ai } from '@/ai/genkit';

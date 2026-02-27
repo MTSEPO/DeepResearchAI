@@ -18,7 +18,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LoaderCircle, Plus, Sparkles, Trash2 } from 'lucide-react';
-import { MarketGapAnalysisReportOutput } from '@/ai/flows/market-gap-analysis-report';
+import type { MarketGapAnalysisReportOutput } from '@/ai/flows/market-gap-analysis-report';
 import { useToast } from '@/hooks/use-toast';
 import { MarketGapReport } from './market-gap-report';
 import { Separator } from './ui/separator';

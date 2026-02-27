@@ -1,6 +1,6 @@
 'use server';
 /**
- * @fileOverview Fast competitive insight generation using Server Actions.
+ * @fileOverview Fast competitive insight generation using Genkit.
  */
 
 import {ai} from '@/ai/genkit';
