@@ -17,12 +17,12 @@ export function Logo(props: React.SVGProps<SVGSVGElement>) {
         dominantBaseline="middle"
         textAnchor="middle"
         fontFamily="sans-serif"
-        fontSize="18"
+        fontSize="14"
         fontWeight="bold"
         fill="currentColor"
         className="text-primary-foreground"
       >
-        T
+        DR
       </text>
     </svg>
   );
