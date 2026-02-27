@@ -10,7 +10,7 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-export const maxDuration = 10;
+export const runtime = 'edge';
 
 const CompetitiveInsightGenerationInputSchema = z.object({
   question: z
@@ -38,11 +38,9 @@ const competitiveInsightPrompt = ai.definePrompt({
   name: 'competitiveInsightPrompt',
   input: {schema: CompetitiveInsightGenerationInputSchema},
   output: {schema: CompetitiveInsightGenerationOutputSchema},
-  prompt: `You are an expert competitive intelligence analyst for sales teams. Your goal is to provide concise, actionable, and data-driven insights about competitors or market trends based on the user's question. Focus on information that can directly inform and improve a sales strategy.
+  prompt: `You are an expert competitive intelligence analyst. Provide a concise, actionable insight.
 
-User Question: {{{question}}}
-
-Please provide a comprehensive insight based on the question.`,
+User Question: {{{question}}}`,
 });
 
 const competitiveInsightGenerationFlow = ai.defineFlow(
