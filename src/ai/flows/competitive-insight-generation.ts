@@ -1,12 +1,10 @@
 'use server';
 /**
- * @fileOverview Fast competitive insight generation using Edge runtime.
+ * @fileOverview Fast competitive insight generation using Server Actions.
  */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-
-export const runtime = 'edge';
 
 const CompetitiveInsightGenerationInputSchema = z.object({
   question: z.string().describe("The user's question about competitors."),

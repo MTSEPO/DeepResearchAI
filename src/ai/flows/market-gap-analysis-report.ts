@@ -10,8 +10,6 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
-export const runtime = 'edge';
-
 const CompanyInfoSchema = z.object({
   name: z.string().describe('Company name'),
   desc: z.string().describe('Short product summary'),
@@ -48,8 +46,6 @@ const searchTool = ai.defineTool(
     outputSchema: z.array(z.string()),
   },
   async (input) => {
-    // This is a placeholder for actual Google/Tavily search logic.
-    // Capping at 3 results per request as per MVP speed requirements.
     return [
       `Insight 1 for ${input.query}`,
       `Insight 2 for ${input.query}`,

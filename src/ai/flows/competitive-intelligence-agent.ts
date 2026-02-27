@@ -1,12 +1,10 @@
 'use server';
 /**
- * @fileOverview High-speed intelligence agent using Edge runtime.
+ * @fileOverview High-speed intelligence agent using Server Actions.
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
-
-export const runtime = 'edge';
+import { z } from 'zn';
 
 const CompetitiveIntelligenceAgentInputSchema = z.object({
   competitorUrl: z.string().url().describe("Competitor website."),
