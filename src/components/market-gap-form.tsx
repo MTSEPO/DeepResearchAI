@@ -18,14 +18,14 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LoaderCircle, Plus, Sparkles, Trash2 } from 'lucide-react';
-import { generateMarketGapAnalysisReport, MarketGapAnalysisReportOutput } from '@/ai/flows/market-gap-analysis-report';
+import { MarketGapAnalysisReportOutput } from '@/ai/flows/market-gap-analysis-report';
 import { useToast } from '@/hooks/use-toast';
 import { MarketGapReport } from './market-gap-report';
 import { Separator } from './ui/separator';
 
 const companyInfoSchema = z.object({
   name: z.string().min(2, { message: 'Company name must be at least 2 characters.' }),
-  productDescription: z.string().min(10, { message: 'Product description must be at least 10 characters.' }),
+  desc: z.string().min(10, { message: 'Description must be at least 10 characters.' }),
 });
 
 const formSchema = z.object({
@@ -41,8 +41,8 @@ export function MarketGapAnalysisForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      userCompany: { name: '', productDescription: '' },
-      competitors: [{ name: '', productDescription: '' }],
+      userCompany: { name: '', desc: '' },
+      competitors: [{ name: '', desc: '' }],
     },
   });
 
@@ -55,13 +55,24 @@ export function MarketGapAnalysisForm() {
     setIsLoading(true);
     setReport(null);
     try {
-      const result = await generateMarketGapAnalysisReport(values);
+      const response = await fetch('/api/market-gap', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to generate report');
+      }
+
+      const result = await response.json();
       setReport(result);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error generating report:', error);
       toast({
         title: 'Error',
-        description: 'Failed to generate report. Please try again.',
+        description: error.message || 'Failed to generate report. Please try again.',
         variant: 'destructive',
       });
     } finally {
@@ -93,7 +104,7 @@ export function MarketGapAnalysisForm() {
               />
               <FormField
                 control={form.control}
-                name="userCompany.productDescription"
+                name="userCompany.desc"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Product/Service Description</FormLabel>
@@ -141,7 +152,7 @@ export function MarketGapAnalysisForm() {
                     />
                     <FormField
                       control={form.control}
-                      name={`competitors.${index}.productDescription`}
+                      name={`competitors.${index}.desc`}
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Product/Service Description</FormLabel>
@@ -158,7 +169,7 @@ export function MarketGapAnalysisForm() {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => append({ name: '', productDescription: '' })}
+                onClick={() => append({ name: '', desc: '' })}
               >
                 <Plus className="mr-2 h-4 w-4" /> Add Competitor
               </Button>

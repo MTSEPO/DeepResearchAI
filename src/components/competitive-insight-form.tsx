@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { Sparkles, LoaderCircle } from 'lucide-react';
-import { competitiveInsightGeneration } from '@/ai/flows/competitive-insight-generation';
 import { Button } from './ui/button';
 import { CardContent, CardFooter } from './ui/card';
 import { Textarea } from './ui/textarea';
@@ -23,13 +22,24 @@ export function CompetitiveInsightForm() {
     setInsight('');
 
     try {
-      const result = await competitiveInsightGeneration({ question });
+      const response = await fetch('/api/competitive-insight', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to generate insight');
+      }
+
+      const result = await response.json();
       setInsight(result.insight);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error generating insight:', error);
       toast({
         title: 'Error',
-        description: 'Failed to generate insight. Please try again.',
+        description: error.message || 'Failed to generate insight. Please try again.',
         variant: 'destructive',
       });
     } finally {

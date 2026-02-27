@@ -4,7 +4,7 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'zn';
+import { z } from 'genkit';
 
 const CompetitiveIntelligenceAgentInputSchema = z.object({
   competitorUrl: z.string().url().describe("Competitor website."),

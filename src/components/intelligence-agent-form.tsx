@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { Sparkles, LoaderCircle, Bot } from 'lucide-react';
-import { competitiveIntelligenceAgent } from '@/ai/flows/competitive-intelligence-agent';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { Input } from './ui/input';
@@ -24,13 +23,24 @@ export function IntelligenceAgentForm() {
     setReport('');
 
     try {
-      const result = await competitiveIntelligenceAgent({ competitorUrl, userUrl });
+      const response = await fetch('/api/intelligence-agent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ competitorUrl, userUrl }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to generate report');
+      }
+
+      const result = await response.json();
       setReport(result.report);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error generating report:', error);
       toast({
         title: 'Error',
-        description: 'Failed to generate report. Please try again.',
+        description: error.message || 'Failed to generate report. Please try again.',
         variant: 'destructive',
       });
     } finally {
