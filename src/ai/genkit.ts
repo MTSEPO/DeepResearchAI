@@ -8,6 +8,6 @@ if (!apiKey) {
 }
 
 export const ai = genkit({
-  plugins: [googleAI({ apiKey })],
+  plugins: [googleAI({ apiKey: apiKey || 'PROVIDE_API_KEY' })],
   model: 'googleai/gemini-2.5-flash',
 });
