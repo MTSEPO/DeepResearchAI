@@ -16,15 +16,13 @@ export function ThemeToggle() {
   const { setTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
-  // useEffect only runs on the client, so we can safely set the mounted state
   React.useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) {
-    // Return a placeholder or null to avoid hydration mismatch
     return (
-      <Button variant="ghost" size="icon" disabled>
+      <Button variant="ghost" size="icon" className="h-9 w-9">
         <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
         <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
         <span className="sr-only">Toggle theme</span>
@@ -35,7 +33,7 @@ export function ThemeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" className="h-9 w-9">
           <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>

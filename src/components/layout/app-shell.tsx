@@ -185,12 +185,7 @@ export function AppShell({ children }: AppShellProps) {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button variant="ghost" className="relative h-9 w-9 rounded-full" disabled>
-              <Avatar className="h-9 w-9">
-                <AvatarImage src={PlaceHolderImages.find(img => img.id === 'user-avatar')?.imageUrl} alt="User" />
-                <AvatarFallback>U</AvatarFallback>
-              </Avatar>
-            </Button>
+            <div className="h-9 w-9 rounded-full bg-muted animate-pulse" />
           )}
         </header>
         <main className="flex-1 p-4 md:p-6 lg:p-8">{children}</main>

@@ -11,8 +11,10 @@ import { ThemeToggle } from '../theme-toggle';
 export default function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
@@ -64,43 +66,50 @@ export default function Header() {
         {/* Mobile Navigation */}
         <div className="flex items-center gap-2 md:hidden">
           <ThemeToggle />
-          <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle Menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs">
-              <div className="flex flex-col h-full">
-                <div className="border-b p-4">
-                  <Link href="/" className="flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
-                    <Logo className="w-8 h-8" />
-                    <span className="text-xl font-bold tracking-tight font-headline">DeepResearchAI</span>
-                  </Link>
+          {mounted ? (
+            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle Menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-full max-w-xs">
+                <div className="flex flex-col h-full">
+                  <div className="border-b p-4">
+                    <Link href="/" className="flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
+                      <Logo className="w-8 h-8" />
+                      <span className="text-xl font-bold tracking-tight font-headline">DeepResearchAI</span>
+                    </Link>
+                  </div>
+                  <nav className="flex-grow p-4">
+                    <ul className="space-y-4">
+                      {navLinks.map((link) => (
+                        <li key={link.href}>
+                          <Link href={link.href} className="text-lg font-medium" onClick={() => setIsMenuOpen(false)}>
+                            {link.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                  <div className="p-4 border-t space-y-2">
+                    <Button variant="outline" asChild className="w-full">
+                      <Link href="/login" onClick={() => setIsMenuOpen(false)}>Log In</Link>
+                    </Button>
+                    <Button asChild className="w-full">
+                      <Link href="/signup" onClick={() => setIsMenuOpen(false)}>Sign Up</Link>
+                    </Button>
+                  </div>
                 </div>
-                <nav className="flex-grow p-4">
-                  <ul className="space-y-4">
-                    {navLinks.map((link) => (
-                      <li key={link.href}>
-                        <Link href={link.href} className="text-lg font-medium" onClick={() => setIsMenuOpen(false)}>
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-                <div className="p-4 border-t space-y-2">
-                  <Button variant="outline" asChild className="w-full">
-                    <Link href="/login" onClick={() => setIsMenuOpen(false)}>Log In</Link>
-                  </Button>
-                  <Button asChild className="w-full">
-                    <Link href="/signup" onClick={() => setIsMenuOpen(false)}>Sign Up</Link>
-                  </Button>
-                </div>
-              </div>
-            </SheetContent>
-          </Sheet>
+              </SheetContent>
+            </Sheet>
+          ) : (
+            <Button variant="ghost" size="icon">
+              <Menu className="h-6 w-6" />
+              <span className="sr-only">Toggle Menu</span>
+            </Button>
+          )}
         </div>
       </div>
     </header>
