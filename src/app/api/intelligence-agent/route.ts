@@ -1,7 +1,7 @@
 import { competitiveIntelligenceAgent } from '@/ai/flows/competitive-intelligence-agent';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 export const maxDuration = 10;
 
 export async function POST(req: NextRequest) {
