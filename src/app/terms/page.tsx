@@ -3,7 +3,7 @@
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 
-export default function TermsOfServicePage() {
+export default function TermsPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
@@ -18,43 +18,27 @@ export default function TermsOfServicePage() {
 
           <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">1. Use License & Restrictions</h2>
           <p>
-            Permission is granted to use DeepResearchAI's strategic engine for professional competitive research. This is a license, not a transfer of title.
+            Permission is granted to use DeepResearchAI's strategic engine for professional competitive research. You agree not to:
           </p>
-          <p>You agree not to:</p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>Use the tool for illegal research or to gather data in violation of third-party privacy.</li>
-            <li>Automate scraping or bulk extraction of data from our platform or via our AI tools beyond standard manual use.</li>
-            <li>Attempt to reverse engineer the AI logic or software contained on the platform.</li>
-            <li>Use the "Strategic Engine" to generate deceptive or harmful content.</li>
+            <li>Use the tool for illegal research or scraping.</li>
+            <li>Attempt to reverse engineer the AI logic.</li>
+            <li>Generate deceptive or harmful content.</li>
           </ul>
 
           <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">2. AI Disclaimers</h2>
           <p>
-            DeepResearchAI provides AI-generated insights for <strong>informational purposes only</strong>.
-          </p>
-          <ul className="list-disc pl-6 space-y-2">
-            <li><strong>Accuracy:</strong> While we strive for accuracy, AI models can hallucinate or rely on outdated web data. We do not guarantee the validity of competitor data.</li>
-            <li><strong>Verification:</strong> Users are responsible for verifying critical business information independently before making financial or strategic decisions.</li>
-          </ul>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">3. Subscriptions and Billing</h2>
-          <p>
-            All subscriptions and one-time payments are managed by <strong>Paddle</strong>, our Merchant of Record.
-          </p>
-          <ul className="list-disc pl-6 space-y-2">
-            <li><strong>Billing Cycles:</strong> Monthly and annual plans renew automatically unless canceled via the billing dashboard.</li>
-            <li><strong>Cancellations:</strong> You can cancel at any time. Access remains active until the end of the current billing period.</li>
-            <li><strong>Price Changes:</strong> We reserve the right to modify pricing with 30 days' notice to active subscribers.</li>
-          </ul>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">4. Limitations of Liability</h2>
-          <p>
-            In no event shall DeepResearchAI be liable for any damages (including loss of profit or data) arising out of the use or inability to use our AI research tools, even if we have been notified of the possibility of such damage.
+            DeepResearchAI provides AI-generated insights for <strong>informational purposes only</strong>. We do not guarantee the validity of competitor data. Users are responsible for independent verification.
           </p>
 
-          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">5. Contact</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">3. Subscriptions</h2>
           <p>
-            For any legal or support inquiries, please contact:
+            All subscriptions and payments are managed by <strong>Paddle</strong>. Billing cycles renew automatically unless canceled via the billing dashboard.
+          </p>
+
+          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">4. Contact</h2>
+          <p>
+            For any legal inquiries, please contact:
             <br />
             Email: <a href="mailto:tsepomotsatse@gmail.com" className="text-primary hover:underline">tsepomotsatse@gmail.com</a>
           </p>

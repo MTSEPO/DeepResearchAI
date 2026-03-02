@@ -3,7 +3,7 @@
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 
-export default function PrivacyPolicyPage() {
+export default function PrivacyPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
@@ -23,7 +23,6 @@ export default function PrivacyPolicyPage() {
           <ul className="list-disc pl-6 space-y-2">
             <li><strong>Account Data:</strong> We collect your email address and name via Firebase Authentication to manage your account and provide access to our services.</li>
             <li><strong>Research Queries:</strong> We store the search queries and competitor URLs you input into our "Strategic Engine" to generate reports and provide history.</li>
-            <li><strong>Log Data:</strong> We automatically collect standard internet log information, including your IP address, browser type, and pages visited.</li>
           </ul>
 
           <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">2. AI Data Processing</h2>
@@ -37,20 +36,10 @@ export default function PrivacyPolicyPage() {
 
           <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">3. Payments and Billing</h2>
           <p>
-            Payments are processed securely through <strong>Paddle</strong>, our Merchant of Record.
-          </p>
-          <p>
-            Paddle handles all payment data (credit card details, billing addresses) according to their own privacy policy. DeepResearchAI does not store your full payment card information on our servers; we only receive confirmation of payment and subscription status from Paddle.
+            Payments are processed securely through <strong>Paddle</strong>, our Merchant of Record. DeepResearchAI does not store your full payment card information on our servers; we only receive confirmation of payment status from Paddle.
           </p>
 
-          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">4. How We Use Your Information</h2>
-          <ul className="list-disc pl-6 space-y-2">
-            <li>To provide and maintain our AI intelligence engine.</li>
-            <li>To manage your strategic license and process transactions.</li>
-            <li>To communicate updates, security alerts, and support responses.</li>
-          </ul>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">5. Contact Us</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">4. Contact Us</h2>
           <p>
             If you have any questions about this Privacy Policy, you can contact us at:
             <br />
