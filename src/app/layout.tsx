@@ -3,6 +3,7 @@ import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { PaddleProvider } from '@/components/paddle-provider';
+import { FirebaseClientProvider } from '@/firebase/client-provider';
 
 export const metadata: Metadata = {
   title: 'DeepResearchAI | Strategic Competitive Intelligence',
@@ -29,10 +30,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <PaddleProvider>
-            {children}
-            <Toaster />
-          </PaddleProvider>
+          <FirebaseClientProvider>
+            <PaddleProvider>
+              {children}
+              <Toaster />
+            </PaddleProvider>
+          </FirebaseClientProvider>
         </ThemeProvider>
       </body>
     </html>
