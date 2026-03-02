@@ -1,11 +1,11 @@
 'use client';
 
 import Footer from "@/components/layout/footer";
-import Header from "@/components/layout/header";
+import Header from "@/components/header";
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
       <main className="flex-grow container mx-auto px-4 md:px-6 py-12 md:py-24">
         <article className="prose prose-neutral dark:prose-invert max-w-3xl mx-auto">
@@ -16,7 +16,7 @@ export default function PrivacyPolicyPage() {
             At DeepResearchAI, accessible from our website, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by DeepResearchAI and how we use it.
           </p>
 
-          <h2 className="text-2xl font-bold mt-8 mb-4">1. Information We Collect</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">1. Information We Collect</h2>
           <p>
             We collect personal information that you provide to us directly:
           </p>
@@ -26,7 +26,7 @@ export default function PrivacyPolicyPage() {
             <li><strong>Log Data:</strong> We automatically collect standard internet log information, including your IP address, browser type, and pages visited.</li>
           </ul>
 
-          <h2 className="text-2xl font-bold mt-8 mb-4">2. AI Data Processing</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">2. AI Data Processing</h2>
           <p>
             Our core research features utilize the Google Gemini API (Google AI) to synthesize and analyze market data.
           </p>
@@ -35,7 +35,7 @@ export default function PrivacyPolicyPage() {
             <li><strong>Training:</strong> We do not use your proprietary search data or company descriptions to train our base AI models.</li>
           </ul>
 
-          <h2 className="text-2xl font-bold mt-8 mb-4">3. Payments and Billing</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">3. Payments and Billing</h2>
           <p>
             Payments are processed securely through <strong>Paddle</strong>, our Merchant of Record.
           </p>
@@ -43,14 +43,14 @@ export default function PrivacyPolicyPage() {
             Paddle handles all payment data (credit card details, billing addresses) according to their own privacy policy. DeepResearchAI does not store your full payment card information on our servers; we only receive confirmation of payment and subscription status from Paddle.
           </p>
 
-          <h2 className="text-2xl font-bold mt-8 mb-4">4. How We Use Your Information</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">4. How We Use Your Information</h2>
           <ul className="list-disc pl-6 space-y-2">
             <li>To provide and maintain our AI intelligence engine.</li>
             <li>To manage your strategic license and process transactions.</li>
             <li>To communicate updates, security alerts, and support responses.</li>
           </ul>
 
-          <h2 className="text-2xl font-bold mt-8 mb-4">5. Contact Us</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">5. Contact Us</h2>
           <p>
             If you have any questions about this Privacy Policy, you can contact us at:
             <br />
