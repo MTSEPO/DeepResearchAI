@@ -1,7 +1,7 @@
 'use client';
 
 import Footer from "@/components/layout/footer";
-import Header from "@/components/header";
+import Header from "@/components/layout/header";
 
 export default function TermsOfServicePage() {
   return (
@@ -10,7 +10,7 @@ export default function TermsOfServicePage() {
       <main className="flex-grow container mx-auto px-4 md:px-6 py-12 md:py-24">
         <article className="prose prose-neutral dark:prose-invert max-w-3xl mx-auto">
           <h1 className="font-headline text-4xl mb-4 font-bold">Terms of Service</h1>
-          <p className="text-muted-foreground">Last updated: October 26, 2023</p>
+          <p className="text-muted-foreground">Last updated: March 2, 2024</p>
 
           <p>
             Welcome to DeepResearchAI. By accessing or using our service, you agree to be bound by these terms. If you disagree with any part of the terms, you may not access the service.

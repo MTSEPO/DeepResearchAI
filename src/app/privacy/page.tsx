@@ -1,7 +1,7 @@
 'use client';
 
 import Footer from "@/components/layout/footer";
-import Header from "@/components/header";
+import Header from "@/components/layout/header";
 
 export default function PrivacyPolicyPage() {
   return (
@@ -10,7 +10,7 @@ export default function PrivacyPolicyPage() {
       <main className="flex-grow container mx-auto px-4 md:px-6 py-12 md:py-24">
         <article className="prose prose-neutral dark:prose-invert max-w-3xl mx-auto">
           <h1 className="font-headline text-4xl mb-4 font-bold">Privacy Policy</h1>
-          <p className="text-muted-foreground">Last updated: October 26, 2023</p>
+          <p className="text-muted-foreground">Last updated: March 2, 2024</p>
 
           <p>
             At DeepResearchAI, accessible from our website, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by DeepResearchAI and how we use it.

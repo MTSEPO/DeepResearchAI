@@ -1,7 +1,7 @@
 'use client';
 
 import Footer from "@/components/layout/footer";
-import Header from "@/components/header";
+import Header from "@/components/layout/header";
 
 export default function RefundPolicyPage() {
   return (
@@ -10,7 +10,7 @@ export default function RefundPolicyPage() {
       <main className="flex-grow container mx-auto px-4 md:px-6 py-12 md:py-24">
         <article className="prose prose-neutral dark:prose-invert max-w-3xl mx-auto">
           <h1 className="font-headline text-4xl mb-4 font-bold">Refund Policy</h1>
-          <p className="text-muted-foreground">Last updated: October 26, 2023</p>
+          <p className="text-muted-foreground">Last updated: March 2, 2024</p>
 
           <p>
             At DeepResearchAI, we want you to be completely satisfied with our strategic intelligence engine. This Refund Policy outlines the conditions under which refunds are provided for our subscription plans and Lifetime Deal (LTD) licenses.
