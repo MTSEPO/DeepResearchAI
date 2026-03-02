@@ -1,3 +1,5 @@
+'use client';
+
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 
@@ -16,33 +18,37 @@ export default function PrivacyPolicyPage() {
 
           <h2 className="text-2xl font-bold mt-8 mb-4">1. Information We Collect</h2>
           <p>
-            We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent.
+            We collect personal information that you provide to us directly:
           </p>
           <ul className="list-disc pl-6 space-y-2">
-            <li><strong>Log Data:</strong> Like most websites, we collect information that your browser sends whenever you visit our service.</li>
-            <li><strong>Personal Information:</strong> We may ask for your email address, name, and billing information to manage your account and process payments via Lemon Squeezy.</li>
+            <li><strong>Account Data:</strong> We collect your email address and name via Firebase Authentication to manage your account and provide access to our services.</li>
+            <li><strong>Research Queries:</strong> We store the search queries and competitor URLs you input into our "Strategic Engine" to generate reports and provide history.</li>
+            <li><strong>Log Data:</strong> We automatically collect standard internet log information, including your IP address, browser type, and pages visited.</li>
           </ul>
 
-          <h2 className="text-2xl font-bold mt-8 mb-4">2. How We Use Your Information</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4">2. AI Data Processing</h2>
           <p>
-            We use the information we collect in various ways, including to:
+            Our core research features utilize the Google Gemini API (Google AI) to synthesize and analyze market data.
           </p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>Provide, operate, and maintain our AI intelligence engine.</li>
-            <li>Improve, personalize, and expand our research capabilities.</li>
-            <li>Process your transactions and manage your strategic license.</li>
-            <li>Communicate with you regarding updates or support.</li>
+            <li><strong>Processing:</strong> Your research queries are sent to Google Gemini for real-time analysis.</li>
+            <li><strong>Training:</strong> We do not use your proprietary search data or company descriptions to train our base AI models.</li>
           </ul>
 
-          <h2 className="text-2xl font-bold mt-8 mb-4">3. Data Security</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4">3. Payments and Billing</h2>
           <p>
-            The security of your data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its absolute security.
+            Payments are processed securely through <strong>Paddle</strong>, our Merchant of Record.
+          </p>
+          <p>
+            Paddle handles all payment data (credit card details, billing addresses) according to their own privacy policy. DeepResearchAI does not store your full payment card information on our servers; we only receive confirmation of payment and subscription status from Paddle.
           </p>
 
-          <h2 className="text-2xl font-bold mt-8 mb-4">4. Third-Party Services</h2>
-          <p>
-            We use third-party services like Google AI (Gemini) for processing research queries and Lemon Squeezy for payments. These providers have their own privacy policies.
-          </p>
+          <h2 className="text-2xl font-bold mt-8 mb-4">4. How We Use Your Information</h2>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>To provide and maintain our AI intelligence engine.</li>
+            <li>To manage your strategic license and process transactions.</li>
+            <li>To communicate updates, security alerts, and support responses.</li>
+          </ul>
 
           <h2 className="text-2xl font-bold mt-8 mb-4">5. Contact Us</h2>
           <p>

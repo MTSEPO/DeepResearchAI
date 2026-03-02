@@ -1,3 +1,5 @@
+'use client';
+
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 
@@ -14,41 +16,45 @@ export default function TermsOfServicePage() {
             Welcome to DeepResearchAI. By accessing or using our service, you agree to be bound by these terms. If you disagree with any part of the terms, you may not access the service.
           </p>
 
-          <h2 className="text-2xl font-bold mt-8 mb-4">1. Use License</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4">1. Use License & Restrictions</h2>
           <p>
-            Permission is granted to use DeepResearchAI's strategic engine for competitive research. This is the grant of a license, not a transfer of title.
+            Permission is granted to use DeepResearchAI's strategic engine for professional competitive research. This is a license, not a transfer of title.
           </p>
-          <p>Under this license you may not:</p>
+          <p>You agree not to:</p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>Modify or copy the software materials.</li>
-            <li>Use the materials for any public display (commercial or non-commercial) without an active license.</li>
-            <li>Attempt to decompile or reverse engineer any software contained on the platform.</li>
-            <li>Transfer the materials to another person or "mirror" the materials on any other server.</li>
+            <li>Use the tool for illegal research or to gather data in violation of third-party privacy.</li>
+            <li>Automate scraping or bulk extraction of data from our platform or via our AI tools beyond standard manual use.</li>
+            <li>Attempt to reverse engineer the AI logic or software contained on the platform.</li>
+            <li>Use the "Strategic Engine" to generate deceptive or harmful content.</li>
           </ul>
 
-          <h2 className="text-2xl font-bold mt-8 mb-4">2. Disclaimer</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4">2. AI Disclaimers</h2>
           <p>
-            The materials on DeepResearchAI's website are provided on an 'as is' basis. DeepResearchAI makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, or fitness for a particular purpose.
+            DeepResearchAI provides AI-generated insights for <strong>informational purposes only</strong>.
+          </p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li><strong>Accuracy:</strong> While we strive for accuracy, AI models can hallucinate or rely on outdated web data. We do not guarantee the validity of competitor data.</li>
+            <li><strong>Verification:</strong> Users are responsible for verifying critical business information independently before making financial or strategic decisions.</li>
+          </ul>
+
+          <h2 className="text-2xl font-bold mt-8 mb-4">3. Subscriptions and Billing</h2>
+          <p>
+            All subscriptions and one-time payments are managed by <strong>Paddle</strong>, our Merchant of Record.
+          </p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li><strong>Billing Cycles:</strong> Monthly and annual plans renew automatically unless canceled via the billing dashboard.</li>
+            <li><strong>Cancellations:</strong> You can cancel at any time. Access remains active until the end of the current billing period.</li>
+            <li><strong>Price Changes:</strong> We reserve the right to modify pricing with 30 days' notice to active subscribers.</li>
+          </ul>
+
+          <h2 className="text-2xl font-bold mt-8 mb-4">4. Limitations of Liability</h2>
+          <p>
+            In no event shall DeepResearchAI be liable for any damages (including loss of profit or data) arising out of the use or inability to use our AI research tools, even if we have been notified of the possibility of such damage.
           </p>
 
-          <h2 className="text-2xl font-bold mt-8 mb-4">3. Limitations</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4">5. Contact</h2>
           <p>
-            In no event shall DeepResearchAI or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the AI research tools.
-          </p>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4">4. Strategic Insights</h2>
-          <p>
-            The AI-generated insights are for strategic guidance only. We do not guarantee the accuracy of competitor data retrieved from third-party sources and recommend verifying critical business information independently.
-          </p>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4">5. Governing Law</h2>
-          <p>
-            These terms and conditions are governed by and construed in accordance with the laws of our operating jurisdiction and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.
-          </p>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4">6. Contact</h2>
-          <p>
-            For any legal inquiries, please contact:
+            For any legal or support inquiries, please contact:
             <br />
             Email: <a href="mailto:tsepomotsatse@gmail.com" className="text-primary hover:underline">tsepomotsatse@gmail.com</a>
           </p>

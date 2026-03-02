@@ -31,14 +31,14 @@ export default function Footer() {
                 <li><Link href="/pricing" className="text-muted-foreground hover:text-primary transition-colors">Pricing</Link></li>
                 <li><Link href="/#features" className="text-muted-foreground hover:text-primary transition-colors">Features</Link></li>
                 <li><Link href="/dashboard/briefing" className="text-muted-foreground hover:text-primary transition-colors">Operational Briefing</Link></li>
-                <li><a href="mailto:tsepomotsatse@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">Strategic Support</a></li>
+                <li><a href="mailto:tsepomotsatse@gmail.com" className="text-muted-foreground hover:text-primary transition-colors font-medium">Support</a></li>
               </ul>
             </div>
             <div className="space-y-4">
               <h4 className="font-bold text-sm uppercase tracking-wider text-foreground">Legal</h4>
               <ul className="space-y-3 text-sm">
-                <li><Link href="/terms" className="text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link></li>
                 <li><Link href="/privacy" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link></li>
                 <li><Link href="/refund-policy" className="text-muted-foreground hover:text-primary transition-colors">Refund Policy</Link></li>
               </ul>
             </div>
