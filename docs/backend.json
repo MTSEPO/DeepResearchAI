@@ -1,0 +1,272 @@
+{
+  "entities": {
+    "UserProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserProfile",
+      "type": "object",
+      "description": "Stores information about a user, including their authentication details, display name, current access level, and links to their Paddle-managed subscriptions or lifetime deals for the DeepResearchAI application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the UserProfile entity."
+        },
+        "email": {
+          "type": "string",
+          "description": "The user's email address.",
+          "format": "email"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "The user's chosen display name."
+        },
+        "profilePictureUrl": {
+          "type": "string",
+          "description": "URL to the user's profile picture.",
+          "format": "uri"
+        },
+        "accessLevel": {
+          "type": "string",
+          "description": "Indicates the user's current access tier (e.g., 'free', 'hobbyist', 'community', 'professional', 'ltd'). This status determines feature availability."
+        },
+        "paddleCustomerId": {
+          "type": "string",
+          "description": "The unique identifier for this customer in Paddle, used to link user profiles to Paddle transactions."
+        },
+        "activeSubscriptionId": {
+          "type": "string",
+          "description": "Reference to the currently active recurring subscription for this user. (Relationship: UserProfile 1:1 Subscription)"
+        },
+        "ltdLicenseId": {
+          "type": "string",
+          "description": "Reference to the user's active Lifetime Deal license. (Relationship: UserProfile 1:1 LTDLicense)"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when the user profile was created.",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp when the user profile was last updated.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "displayName",
+        "accessLevel",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Subscription": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Subscription",
+      "type": "object",
+      "description": "Represents a recurring subscription purchased by a user, with details managed through Paddle.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Subscription entity."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the UserProfile who owns this subscription. (Relationship: UserProfile 1:N Subscription)"
+        },
+        "paddleSubscriptionId": {
+          "type": "string",
+          "description": "The unique identifier for this subscription in the Paddle payment system."
+        },
+        "paddlePriceId": {
+          "type": "string",
+          "description": "The unique identifier for the specific price (plan) in Paddle this subscription is for."
+        },
+        "paddleProductId": {
+          "type": "string",
+          "description": "The unique identifier for the product in Paddle this subscription is for."
+        },
+        "status": {
+          "type": "string",
+          "description": "Current status of the subscription as reported by Paddle (e.g., 'active', 'paused', 'canceled', 'trialing')."
+        },
+        "tierName": {
+          "type": "string",
+          "description": "The friendly name of the pricing tier associated with this subscription (e.g., 'Hobbyist', 'Community', 'Professional')."
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Date when the subscription officially started.",
+          "format": "date-time"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "Date when the current subscription period is expected to end, or the subscription end date if canceled.",
+          "format": "date-time"
+        },
+        "cancelDate": {
+          "type": "string",
+          "description": "Date when the subscription was canceled, if applicable.",
+          "format": "date-time"
+        },
+        "nextBillDate": {
+          "type": "string",
+          "description": "Date of the next scheduled billing for this subscription.",
+          "format": "date-time"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when this subscription record was created.",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp when this subscription record was last updated.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "paddleSubscriptionId",
+        "paddlePriceId",
+        "paddleProductId",
+        "status",
+        "tierName",
+        "startDate",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "LTDLicense": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "LTDLicense",
+      "type": "object",
+      "description": "Represents a one-time Lifetime Deal purchase, granting permanent access to premium features, with details managed through Paddle.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the LTDLicense entity."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the UserProfile who owns this LTD license. (Relationship: UserProfile 1:N LTDLicense)"
+        },
+        "paddleTransactionId": {
+          "type": "string",
+          "description": "The unique identifier for the Paddle transaction that granted this Lifetime Deal."
+        },
+        "paddleProductId": {
+          "type": "string",
+          "description": "The unique identifier for the product in Paddle that represents the Lifetime Deal."
+        },
+        "paddlePriceId": {
+          "type": "string",
+          "description": "The unique identifier for the price in Paddle used for this Lifetime Deal."
+        },
+        "purchaseDate": {
+          "type": "string",
+          "description": "Date and time when the Lifetime Deal was purchased.",
+          "format": "date-time"
+        },
+        "accessGranted": {
+          "type": "boolean",
+          "description": "Boolean flag indicating if lifetime access has been successfully granted to the user."
+        },
+        "status": {
+          "type": "string",
+          "description": "Current status of the Lifetime Deal (e.g., 'active', 'refunded')."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when this Lifetime Deal record was created.",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp when this Lifetime Deal record was last updated.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "paddleTransactionId",
+        "paddleProductId",
+        "paddlePriceId",
+        "purchaseDate",
+        "accessGranted",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "UserProfile",
+          "schema": {
+            "$ref": "#/backend/entities/UserProfile"
+          },
+          "description": "Stores individual user profiles. The 'accessLevel' field within this document is denormalized for authorization and determines access to premium features. Path-based ownership ensures only the authenticated user can access their own profile.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user, corresponding to `request.auth.uid`."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/subscriptions/{subscriptionId}",
+        "definition": {
+          "entityName": "Subscription",
+          "schema": {
+            "$ref": "#/backend/entities/Subscription"
+          },
+          "description": "Stores details of a user's recurring subscriptions. Includes denormalized 'userId' for authorization independence, ensuring security rules can verify ownership without requiring a parent document fetch. The '{userId}' wildcard in the path matches `request.auth.uid` for ownership-based access.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user who owns this subscription, corresponding to `request.auth.uid`."
+            },
+            {
+              "name": "subscriptionId",
+              "description": "The unique identifier for the subscription document."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/ltdLicenses/{ltdLicenseId}",
+        "definition": {
+          "entityName": "LTDLicense",
+          "schema": {
+            "$ref": "#/backend/entities/LTDLicense"
+          },
+          "description": "Stores details of a user's Lifetime Deal licenses. Includes denormalized 'userId' for authorization independence, ensuring security rules can verify ownership without requiring a parent document fetch. The '{userId}' wildcard in the path matches `request.auth.uid` for ownership-based access.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user who owns this Lifetime Deal license, corresponding to `request.auth.uid`."
+            },
+            {
+              "name": "ltdLicenseId",
+              "description": "The unique identifier for the Lifetime Deal license document."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The recommended Firestore structure for DeepResearchAI prioritizes secure, scalable, and debuggable authorization by adhering to the core design principles. Each user's data is strictly segregated under their unique user ID, facilitating path-based security rules. We define three main collections:\n\n1.  \"/users/{userId}\": This collection stores individual UserProfile documents. The `userId` wildcard directly corresponds to the authenticated user's `request.auth.uid`. Each UserProfile document contains critical authorization information, specifically the `accessLevel` field (e.g., 'free', 'hobbyist', 'professional', 'ltd'). This field is the **denormalized authorization context** for determining feature access, such as enabling the 'Deep Research' flow for 'pro' status users.\n\n2.  \"/users/{userId}/subscriptions/{subscriptionId}\": This is a subcollection under each UserProfile, storing details of a user's recurring subscriptions. The `userId` in the path ensures that only the authenticated user can access their own subscriptions. Crucially, each `Subscription` document will also contain a `userId` field that **denormalizes ownership**. This explicit `userId` within the document, matching the `{userId}` wildcard in the path, eliminates the need for security rules to perform a `get()` operation on the parent `UserProfile` document to verify ownership. This ensures **authorization independence** and allows for atomic operations and simplified rule logic.\n\n3.  \"/users/{userId}/ltdLicenses/{ltdLicenseId}\": Similar to subscriptions, this is a subcollection for Lifetime Deal licenses. Each `LTDLicense` document also includes a **denormalized `userId`** field, matching the path's `{userId}` wildcard. This again ensures **authorization independence** by providing all necessary ownership information directly within the document, preventing `get()` calls in rules to verify parent ownership.\n\n**Authorization Independence and QAPs:**\n\n*   **Authorization Independence:** The key to authorization independence for `Subscription` and `LTDLicense` documents is their placement as subcollections of `/users/{userId}` and the inclusion of the `userId` field within each document. For instance, a security rule for `/users/{userId}/subscriptions/{subscriptionId}` would simply check `allow read, write: if request.auth.uid == userId && resource.data.userId == userId;`. This rule is atomic, doesn't require `get()`, and clearly expresses intent.\n\n*   **QAPs (Queries are not Filters):** This structure inherently supports Query-Allow-Permissions (QAPs). When a user requests their subscriptions (e.g., `db.collection('users').doc(request.auth.uid).collection('subscriptions').get()`), the `userId` in the path is `request.auth.uid`. The security rules can directly enforce that the `userId` in the path must match `request.auth.uid`. This means that `list` operations are automatically constrained to the authenticated user's own data. Similarly, for accessing the user's `UserProfile`, the rule `allow read, write: if request.auth.uid == userId;` ensures only the owner can access their profile, fulfilling QAPs as only a specific document (`/users/request.auth.uid`) can be requested by that user."
+  }
+}

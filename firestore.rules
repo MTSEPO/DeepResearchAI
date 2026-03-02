@@ -1,0 +1,98 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * DEEPRESEARCHAI SECURITY RULES (PROTOTYPING MODE)
+     *
+     * CORE PHILOSOPHY:
+     * This ruleset enforces a strict user-ownership model. Every piece of user data is nested 
+     * under a top-level /users/{userId} path, where {userId} is guaranteed to match the 
+     * authenticated user's UID.
+     *
+     * DATA STRUCTURE:
+     * - /users/{userId}: The root profile for a user.
+     * - /users/{userId}/subscriptions/{subId}: Billing data managed via Paddle.
+     * - /users/{userId}/ltdLicenses/{ltdId}: One-time purchase data.
+     *
+     * KEY SECURITY DECISIONS:
+     * 1. Path-Based Authorization: Access to any document is gated primarily by the {userId} wildcard 
+     *    matching request.auth.uid.
+     * 2. Denormalization for Authorization: Sub-documents (subscriptions/licenses) include a 
+     *    'userId' field. While the path provides security, this field is validated on creation 
+     *    to ensure relational integrity without requiring parent document lookups.
+     * 3. Prototyping Flexibility: Rules do not enforce data types (strings, ints, etc.) or 
+     *    exact object shapes, allowing the frontend and backend (Paddle webhooks) to evolve 
+     *    the schema rapidly while maintaining strict access control.
+     * 4. State Safety: Update and delete operations explicitly verify that a document 
+     *    exists before proceeding to prevent orphaned logic or unauthorized creation via update.
+     */
+
+    // --- Global Helper Functions ---
+
+    /**
+     * @description Checks if the request is from a signed-in user.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * @description Checks if the authenticated user matches the provided userId from the path.
+     */
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    /**
+     * @description Combines ownership check with existence check for destructive operations.
+     */
+    function isExistingOwner(userId) {
+      return resource != null && isOwner(userId);
+    }
+
+    // --- Collection Rules ---
+
+    /**
+     * @description Rules for the UserProfile entity. Only the user can access or modify their own profile.
+     * @path /users/{userId}
+     * @allow (create) if auth.uid matches userId and data.id matches userId.
+     * @deny (get) if auth.uid does not match userId.
+     * @principle Restricts access to a user's own data tree and validates relational integrity.
+     */
+    match /users/{userId} {
+      allow get, list: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+      allow delete: if isExistingOwner(userId);
+
+      /**
+       * @description Rules for Subscription details. Nested under the owner's path.
+       * @path /users/{userId}/subscriptions/{subscriptionId}
+       * @allow (list) if owner is viewing their own subscription list.
+       * @deny (update) if attempting to change the 'userId' owner field.
+       * @principle Path-based ownership with immutable relational field enforcement.
+       */
+      match /subscriptions/{subscriptionId} {
+        allow get, list: if isOwner(userId);
+        allow create: if isOwner(userId) && request.resource.data.userId == userId;
+        allow update: if isExistingOwner(userId) && request.resource.data.userId == resource.data.userId;
+        allow delete: if isExistingOwner(userId);
+      }
+
+      /**
+       * @description Rules for Lifetime Deal licenses. Nested under the owner's path.
+       * @path /users/{userId}/ltdLicenses/{ltdLicenseId}
+       * @allow (create) if the user is authenticated and the internal userId matches the path.
+       * @deny (delete) if the user is not the owner of this specific data path.
+       * @principle Enforces document ownership for writes and ensures path consistency.
+       */
+      match /ltdLicenses/{ltdLicenseId} {
+        allow get, list: if isOwner(userId);
+        allow create: if isOwner(userId) && request.resource.data.userId == userId;
+        allow update: if isExistingOwner(userId) && request.resource.data.userId == resource.data.userId;
+        allow delete: if isExistingOwner(userId);
+      }
+    }
+  }
+}
