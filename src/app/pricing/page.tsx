@@ -9,10 +9,33 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { PwywSlider } from '@/components/pwyw-slider';
 import { Badge } from '@/components/ui/badge';
+import { usePaddle } from '@/components/paddle-provider';
+import { useUser } from '@/firebase';
 
 export default function PricingPage() {
   const router = useRouter();
+  const { paddle } = usePaddle();
+  const { user } = useUser();
   
+  const handleCheckout = (priceId: string) => {
+    if (!user) {
+      router.push('/signup');
+      return;
+    }
+
+    if (paddle) {
+      paddle.Checkout.open({
+        items: [{ priceId, quantity: 1 }],
+        customData: { userId: user.uid },
+        settings: {
+          displayMode: 'overlay',
+          theme: 'light',
+          locale: 'en',
+        }
+      });
+    }
+  };
+
   const plans = [
     {
       name: 'Hobbyist',
@@ -42,7 +65,7 @@ export default function PricingPage() {
         'Commercial Use License'
       ],
       cta: 'Claim Access',
-      href: '/signup?plan=community',
+      priceId: process.env.NEXT_PUBLIC_PADDLE_COMMUNITY_PRICE_ID || '',
       variant: 'default' as const,
       isPwyw: true,
       badge: 'Best Value (PWYW)',
@@ -60,7 +83,7 @@ export default function PricingPage() {
         'Early access to Roadmap'
       ],
       cta: 'Go Pro',
-      href: '/signup?plan=professional',
+      priceId: process.env.NEXT_PUBLIC_PADDLE_PRO_PRICE_ID || '',
       variant: 'secondary' as const,
     },
   ];
@@ -132,9 +155,15 @@ export default function PricingPage() {
                     </ul>
                   </CardContent>
                   <CardFooter className="pb-8">
-                    <Button asChild className="w-full h-11 text-base font-semibold" variant={plan.variant}>
-                      <Link href={plan.href}>{plan.cta}</Link>
-                    </Button>
+                    {plan.priceId ? (
+                      <Button onClick={() => handleCheckout(plan.priceId)} className="w-full h-11 text-base font-semibold" variant={plan.variant}>
+                        {plan.cta}
+                      </Button>
+                    ) : (
+                      <Button asChild className="w-full h-11 text-base font-semibold" variant={plan.variant}>
+                        <Link href={plan.href || '/signup'}>{plan.cta}</Link>
+                      </Button>
+                    )}
                   </CardFooter>
                 </Card>
               ))}
@@ -174,11 +203,11 @@ export default function PricingPage() {
                       <span className="text-primary/60 font-medium">One-time payment</span>
                     </div>
                     <Button 
-                      asChild 
+                      onClick={() => handleCheckout(process.env.NEXT_PUBLIC_PADDLE_LTD_PRICE_ID || '')}
                       size="lg" 
                       className="w-full h-14 text-lg font-bold shadow-lg hover:shadow-xl transition-all"
                     >
-                      <Link href="/signup?plan=ltd">Secure Lifetime Access</Link>
+                      Secure Lifetime Access
                     </Button>
                     <p className="text-xs text-muted-foreground italic">
                       Locked-in pricing. No hidden fees, ever.
@@ -190,7 +219,7 @@ export default function PricingPage() {
 
             <div className="mt-20 text-center">
               <p className="text-muted-foreground">
-                All payments are processed securely via <strong>Lemon Squeezy</strong>.
+                All payments are processed securely via <strong>Paddle</strong>.
               </p>
             </div>
           </div>

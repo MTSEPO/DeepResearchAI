@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import { PaddleProvider } from '@/components/paddle-provider';
 
 export const metadata: Metadata = {
   title: 'DeepResearchAI | Strategic Competitive Intelligence',
@@ -28,8 +29,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Toaster />
+          <PaddleProvider>
+            {children}
+            <Toaster />
+          </PaddleProvider>
         </ThemeProvider>
       </body>
     </html>
