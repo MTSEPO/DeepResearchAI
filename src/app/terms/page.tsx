@@ -12,8 +12,9 @@ export default function TermsPage() {
           <h1 className="font-headline text-4xl mb-4 font-bold">Terms of Service</h1>
           <p className="text-muted-foreground">Last updated: {new Date().toLocaleDateString()}</p>
 
-          <div className="bg-primary/5 p-4 rounded border border-primary/20 my-6">
-            <p className="font-bold">This service is operated by Tsepo Motsatse. By using this service, you agree to these terms.</p>
+          <div className="bg-primary/5 p-6 rounded-lg border border-primary/20 my-6">
+            <p className="font-bold text-lg">This service is owned and operated by Tsepo Motsatse.</p>
+            <p className="mt-2">By using this service, you agree to these terms.</p>
           </div>
 
           <p>
