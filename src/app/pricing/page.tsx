@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -9,31 +10,20 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { PwywSlider } from '@/components/pwyw-slider';
 import { Badge } from '@/components/ui/badge';
-import { usePaddle } from '@/components/paddle-provider';
 import { useUser } from '@/firebase';
 
 export default function PricingPage() {
   const router = useRouter();
-  const { paddle } = usePaddle();
   const { user } = useUser();
   
-  const handleCheckout = (priceId: string) => {
-    if (!user) {
-      router.push('/signup');
-      return;
-    }
-
-    if (paddle) {
-      paddle.Checkout.open({
-        items: [{ priceId, quantity: 1 }],
-        customData: { userId: user.uid },
-        settings: {
-          displayMode: 'overlay',
-          theme: 'light',
-          locale: 'en',
-        }
-      });
-    }
+  // Lemon Squeezy checkouts are handled by appending the customer email and custom data
+  const getCheckoutUrl = (baseUrl: string) => {
+    if (!user) return '/signup';
+    const url = new URL(baseUrl);
+    url.searchParams.set('checkout[email]', user.email || '');
+    url.searchParams.set('checkout[custom][user_id]', user.uid);
+    url.searchParams.set('embed', '1');
+    return url.toString();
   };
 
   const plans = [
@@ -65,7 +55,7 @@ export default function PricingPage() {
         'Commercial Use License'
       ],
       cta: 'Claim Access',
-      priceId: process.env.NEXT_PUBLIC_PADDLE_COMMUNITY_PRICE_ID || '',
+      checkoutUrl: process.env.NEXT_PUBLIC_LEMONSQUEEZY_COMMUNITY_URL || '#',
       variant: 'default' as const,
       isPwyw: true,
       badge: 'Best Value (PWYW)',
@@ -83,7 +73,7 @@ export default function PricingPage() {
         'Early access to Roadmap'
       ],
       cta: 'Go Pro',
-      priceId: process.env.NEXT_PUBLIC_PADDLE_PRO_PRICE_ID || '',
+      checkoutUrl: process.env.NEXT_PUBLIC_LEMONSQUEEZY_PRO_URL || '#',
       variant: 'secondary' as const,
     },
   ];
@@ -155,9 +145,9 @@ export default function PricingPage() {
                     </ul>
                   </CardContent>
                   <CardFooter className="pb-8">
-                    {plan.priceId ? (
-                      <Button onClick={() => handleCheckout(plan.priceId)} className="w-full h-11 text-base font-semibold" variant={plan.variant}>
-                        {plan.cta}
+                    {plan.checkoutUrl ? (
+                      <Button asChild className="w-full h-11 text-base font-semibold lemonsqueezy-button" variant={plan.variant}>
+                        <a href={getCheckoutUrl(plan.checkoutUrl)}>{plan.cta}</a>
                       </Button>
                     ) : (
                       <Button asChild className="w-full h-11 text-base font-semibold" variant={plan.variant}>
@@ -203,11 +193,13 @@ export default function PricingPage() {
                       <span className="text-primary/60 font-medium">One-time payment</span>
                     </div>
                     <Button 
-                      onClick={() => handleCheckout(process.env.NEXT_PUBLIC_PADDLE_LTD_PRICE_ID || '')}
+                      asChild
                       size="lg" 
-                      className="w-full h-14 text-lg font-bold shadow-lg hover:shadow-xl transition-all"
+                      className="w-full h-14 text-lg font-bold shadow-lg hover:shadow-xl transition-all lemonsqueezy-button"
                     >
-                      Secure Lifetime Access
+                      <a href={getCheckoutUrl(process.env.NEXT_PUBLIC_LEMONSQUEEZY_LTD_URL || '#')}>
+                        Secure Lifetime Access
+                      </a>
                     </Button>
                     <p className="text-xs text-muted-foreground italic">
                       Locked-in pricing. No hidden fees, ever.
@@ -219,7 +211,7 @@ export default function PricingPage() {
 
             <div className="mt-20 text-center">
               <p className="text-muted-foreground">
-                All payments are processed securely via <strong>Paddle</strong>.
+                All payments are processed securely via <strong>Lemon Squeezy</strong>.
               </p>
             </div>
           </div>

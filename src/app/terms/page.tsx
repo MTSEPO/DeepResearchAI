@@ -1,3 +1,4 @@
+
 'use client';
 
 import Footer from "@/components/layout/footer";
@@ -33,7 +34,7 @@ export default function TermsPage() {
 
           <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">3. Subscriptions</h2>
           <p>
-            All subscriptions and payments are managed by <strong>Paddle</strong>. Billing cycles renew automatically unless canceled via the billing dashboard.
+            All subscriptions and payments are managed by <strong>Lemon Squeezy</strong>. Billing cycles renew automatically unless canceled via your customer portal.
           </p>
 
           <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">4. Contact</h2>

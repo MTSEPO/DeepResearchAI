@@ -1,9 +1,10 @@
+
 import type { Metadata } from 'next';
 import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
-import { PaddleProvider } from '@/components/paddle-provider';
 import { FirebaseClientProvider } from '@/firebase/client-provider';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'DeepResearchAI | Strategic Competitive Intelligence',
@@ -31,12 +32,12 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FirebaseClientProvider>
-            <PaddleProvider>
-              {children}
-              <Toaster />
-            </PaddleProvider>
+            {children}
+            <Toaster />
           </FirebaseClientProvider>
         </ThemeProvider>
+        {/* Lemon Squeezy Overlay Script */}
+        <Script src="https://app.lemonsqueezy.com/js/lemon.js" strategy="afterInteractive" />
       </body>
     </html>
   );

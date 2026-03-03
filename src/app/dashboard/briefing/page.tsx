@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -59,6 +60,9 @@ export default function OperationalBriefingPage() {
             <CardTitle className="font-headline">Activating Your License</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
+            <p className="text-muted-foreground">
+              Your license is managed via <strong>Lemon Squeezy</strong>. Ensure your payment is active to unlock full features.
+            </p>
             <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
               <li>Open the dashboard settings.</li>
               <li>Locate your <strong>License Key</strong> in your Lemon Squeezy receipt.</li>

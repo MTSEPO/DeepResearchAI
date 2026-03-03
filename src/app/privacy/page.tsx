@@ -1,3 +1,4 @@
+
 'use client';
 
 import Footer from "@/components/layout/footer";
@@ -36,7 +37,7 @@ export default function PrivacyPage() {
 
           <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">3. Payments and Billing</h2>
           <p>
-            Payments are processed securely through <strong>Paddle</strong>, our Merchant of Record. DeepResearchAI does not store your full payment card information on our servers; we only receive confirmation of payment status from Paddle.
+            Payments are processed securely through <strong>Lemon Squeezy</strong>, our Merchant of Record. DeepResearchAI does not store your full payment card information on our servers; we only receive confirmation of payment status from Lemon Squeezy.
           </p>
 
           <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">4. Contact Us</h2>
