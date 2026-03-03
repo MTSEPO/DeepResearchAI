@@ -10,27 +10,22 @@ export default function RefundPolicyPage() {
       <main className="flex-grow container mx-auto px-4 md:px-6 py-12 md:py-24">
         <article className="prose prose-neutral dark:prose-invert max-w-3xl mx-auto">
           <h1 className="font-headline text-4xl mb-4 font-bold">Refund Policy</h1>
-          <p className="text-muted-foreground">Last updated: March 2, 2024</p>
+          <p className="text-muted-foreground">Last updated: {new Date().toLocaleDateString()}</p>
 
+          <div className="bg-secondary/30 p-6 rounded-lg border border-primary/20 my-8">
+            <p className="text-lg font-medium">
+              If you are unhappy with your purchase for any reason, you are entitled to a full refund within 14 days of your initial transaction. Please contact <a href="mailto:help@paddle.com" className="text-primary hover:underline">help@paddle.com</a> to initiate this.
+            </p>
+          </div>
+
+          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">1. 14-Day Money-Back Guarantee</h2>
           <p>
-            At DeepResearchAI, we offer a transparent refund policy for our strategic intelligence engine.
+            We offer a comprehensive 14-day money-back guarantee. Our goal is to ensure you have a strategic advantage with our engine. If it does not meet your expectations, we respect your right to a full refund.
           </p>
 
-          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">1. 7-Day Money-Back Guarantee</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">2. Process</h2>
           <p>
-            We offer a 7-day money-back guarantee for new subscribers. If you are not satisfied, you may request a full refund within 7 days of purchase.
-          </p>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">2. AI Usage Limits</h2>
-          <p>
-            To prevent API abuse, refunds are not granted if more than <strong>2</strong> research reports have been generated during the 7-day window.
-          </p>
-
-          <h2 className="text-2xl font-bold mt-8 mb-4 font-headline">3. How to Request</h2>
-          <p>
-            To request a refund, email our support team with your transaction details:
-            <br />
-            Email: <a href="mailto:tsepomotsatse@gmail.com" className="text-primary hover:underline">tsepomotsatse@gmail.com</a>
+            Refunds are processed through our Merchant of Record, Paddle. You can reach out to their support team directly or contact us at <a href="mailto:tsepomotsatse@gmail.com" className="text-primary hover:underline">tsepomotsatse@gmail.com</a> and we will assist in facilitating the request.
           </p>
         </article>
       </main>

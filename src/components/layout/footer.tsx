@@ -46,7 +46,7 @@ export default function Footer() {
         </div>
         <div className="mt-12 pt-8 border-t flex flex-col md:flex-row items-center justify-between gap-4 text-center text-xs text-muted-foreground">
           <p>
-            © {year || 2024} DeepResearchAI. All rights reserved. Strategic Engine v1.0
+            © {year || 2024} DeepResearchAI. All rights reserved. Operated by Tsepo Motsatse.
           </p>
           <div className="flex items-center gap-6">
             <a href="https://x.com/MotsatseTimothy" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">X (Twitter)</a>
