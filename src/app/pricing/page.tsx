@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -11,21 +10,12 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { PwywSlider } from '@/components/pwyw-slider';
 import { Badge } from '@/components/ui/badge';
 import { useUser } from '@/firebase';
+import { LEMON_SQUEEZY_CONFIG, getLemonSqueezyCheckoutUrl } from '@/lib/payment-provider';
 
 export default function PricingPage() {
   const router = useRouter();
   const { user } = useUser();
   
-  // Lemon Squeezy checkouts are handled by appending the customer email and custom data
-  const getCheckoutUrl = (baseUrl: string) => {
-    if (!user) return '/signup';
-    const url = new URL(baseUrl);
-    url.searchParams.set('checkout[email]', user.email || '');
-    url.searchParams.set('checkout[custom][user_id]', user.uid);
-    url.searchParams.set('embed', '1');
-    return url.toString();
-  };
-
   const plans = [
     {
       name: 'Hobbyist',
@@ -55,7 +45,7 @@ export default function PricingPage() {
         'Commercial Use License'
       ],
       cta: 'Claim Access',
-      checkoutUrl: process.env.NEXT_PUBLIC_LEMONSQUEEZY_COMMUNITY_URL || '#',
+      checkoutUrl: LEMON_SQUEEZY_CONFIG.checkouts.community,
       variant: 'default' as const,
       isPwyw: true,
       badge: 'Best Value (PWYW)',
@@ -73,7 +63,7 @@ export default function PricingPage() {
         'Early access to Roadmap'
       ],
       cta: 'Go Pro',
-      checkoutUrl: process.env.NEXT_PUBLIC_LEMONSQUEEZY_PRO_URL || '#',
+      checkoutUrl: LEMON_SQUEEZY_CONFIG.checkouts.pro,
       variant: 'secondary' as const,
     },
   ];
@@ -147,7 +137,7 @@ export default function PricingPage() {
                   <CardFooter className="pb-8">
                     {plan.checkoutUrl ? (
                       <Button asChild className="w-full h-11 text-base font-semibold lemonsqueezy-button" variant={plan.variant}>
-                        <a href={getCheckoutUrl(plan.checkoutUrl)}>{plan.cta}</a>
+                        <a href={getLemonSqueezyCheckoutUrl(plan.checkoutUrl, user)}>{plan.cta}</a>
                       </Button>
                     ) : (
                       <Button asChild className="w-full h-11 text-base font-semibold" variant={plan.variant}>
@@ -197,7 +187,7 @@ export default function PricingPage() {
                       size="lg" 
                       className="w-full h-14 text-lg font-bold shadow-lg hover:shadow-xl transition-all lemonsqueezy-button"
                     >
-                      <a href={getCheckoutUrl(process.env.NEXT_PUBLIC_LEMONSQUEEZY_LTD_URL || '#')}>
+                      <a href={getLemonSqueezyCheckoutUrl(LEMON_SQUEEZY_CONFIG.checkouts.ltd, user)}>
                         Secure Lifetime Access
                       </a>
                     </Button>
