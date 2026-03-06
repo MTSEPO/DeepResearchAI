@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -11,6 +12,7 @@ import { PwywSlider } from '@/components/pwyw-slider';
 import { Badge } from '@/components/ui/badge';
 import { useUser } from '@/firebase';
 import { LEMON_SQUEEZY_CONFIG, getLemonSqueezyCheckoutUrl } from '@/lib/payment-provider';
+import { PayhipButton } from '@/components/payhip-button';
 
 export default function PricingPage() {
   const router = useRouter();
@@ -72,7 +74,7 @@ export default function PricingPage() {
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
       <main className="flex-grow">
-        <section className="py-16 md:py-24 lg:py-32">
+        <section className="py-16 md:py-24 lg:pt-32 pb-16">
           <div className="container px-4 md:px-6">
             <Button 
               variant="ghost" 
@@ -155,20 +157,20 @@ export default function PricingPage() {
                   <div className="space-y-6">
                     <div className="inline-flex items-center gap-2 bg-white/20 px-3 py-1 rounded-full text-white text-xs font-bold uppercase tracking-wider">
                       <Zap className="w-4 h-4 fill-current" />
-                      Limited Time Offer
+                      Special Payhip Offer
                     </div>
                     <h3 className="text-3xl md:text-4xl font-bold font-headline text-white">
                       Professional Lifetime Deal (LTD)
                     </h3>
                     <p className="text-white/90 text-lg leading-relaxed">
-                      Stop worrying about monthly subscriptions. Get full, permanent access to the Strategic Engine for a single payment.
+                      Stop worrying about monthly subscriptions. Get full, permanent access to the Strategic Engine for a single payment via Payhip.
                     </p>
                     <ul className="grid sm:grid-cols-2 gap-3">
                       {[
                         'One-time payment',
                         'Forever updates',
                         'All Pro features',
-                        'Founder support'
+                        'Secure Payhip checkout'
                       ].map(item => (
                         <li key={item} className="flex items-center gap-2 text-white/80 text-sm">
                           <Check className="w-4 h-4 text-accent" /> {item}
@@ -182,17 +184,9 @@ export default function PricingPage() {
                       <div className="text-6xl font-black text-primary">$299</div>
                       <span className="text-primary/60 font-medium">One-time payment</span>
                     </div>
-                    <Button 
-                      asChild
-                      size="lg" 
-                      className="w-full h-14 text-lg font-bold shadow-lg hover:shadow-xl transition-all lemonsqueezy-button"
-                    >
-                      <a href={getLemonSqueezyCheckoutUrl(LEMON_SQUEEZY_CONFIG.checkouts.ltd, user)}>
-                        Secure Lifetime Access
-                      </a>
-                    </Button>
+                    <PayhipButton productKey="PLACEHOLDER_KEY" />
                     <p className="text-xs text-muted-foreground italic">
-                      Locked-in pricing. No hidden fees, ever.
+                      Processed securely by Payhip. No hidden fees.
                     </p>
                   </div>
                 </div>
@@ -201,7 +195,7 @@ export default function PricingPage() {
 
             <div className="mt-20 text-center">
               <p className="text-muted-foreground">
-                All payments are processed securely via <strong>Lemon Squeezy</strong>.
+                All payments are processed securely via <strong>Lemon Squeezy</strong> or <strong>Payhip</strong>.
               </p>
             </div>
           </div>
